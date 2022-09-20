@@ -48,17 +48,18 @@ items.add(CadUp((50,200),screen))
 
 run = True
 while run:
-        clock.tick()
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+        dt = clock.tick(60)
         pygame.draw.rect(screen, (135,206,235), pygame.Rect(0,0,screenwidth, screenheight))
         
-        players.update(players_shots,enemys_shots,items)
-        enemys.update(enemys_shots,players_shots,items) 
-        enemys_shots.update()
-        players_shots.update()
-        items.update()
+        players.update(players_shots,enemys_shots,items,dt)
+        enemys.update(enemys_shots,players_shots,items,dt) 
+        enemys_shots.update(dt)
+        players_shots.update(dt)
+        items.update(dt)
 
         if(len(players)==0):
                 run=False
@@ -68,23 +69,21 @@ while run:
                         player.kill()
 
         if((enemys.__len__()==0)& (not bossfight)):
-                enemys.add(Boss(screen,(screenwidth/2,0)))
+                enemys.add(Boss(screen,(screenwidth/2,100)))
                 bossfight=True
         elif((enemys.__len__()==0)& (bossfight)):
                 run=False
+        
         fps=arial.render("fps :" + str(int(clock.get_fps())),False,(0,0,0),(255,255,255))
         screen.blit(fps,(screenwidth-70,screenheight-30))
         
         #print(clock.get_time())
-        t=clock.get_time()
         
-        if(t<17):
-                pygame.time.wait(17-t)
         #ms_par_frame=arial.render(str(clock.get_time()),False,(0,0,0))
         #screen.blit(ms_par_frame,(screenwidth-60,screenheight-60))
         pygame.display.update()
         #kvhskvblvjnskleslkvns
-
+        
 
 
         

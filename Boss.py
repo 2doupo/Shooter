@@ -1,5 +1,7 @@
 from Enemy import Enemy
 import pygame
+
+from Entity import EntityTag
 class Boss(Enemy):
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/SimpleEnemy.png'),(26*5,32*5))
     speed=0.25
@@ -10,7 +12,7 @@ class Boss(Enemy):
     pv=500
     color=(0,0,0)
     def __init__(self,scr,pos=(0,0)):
-        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed)
+        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.BOSS)
     
     def endcooldown(self):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown

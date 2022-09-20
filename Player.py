@@ -1,8 +1,8 @@
 
 import pygame
-from Item import Item,Itemtag
+from Item import Item
 from Shot import Shot
-from Entity import Entity
+from Entity import Entity, EntityTag
 class Player(Entity):
     screenw,screenh=pygame.display.get_window_size()
     speed=0.5
@@ -16,7 +16,7 @@ class Player(Entity):
     item_start=0
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/boat1.png'),(32,60))
     def __init__(self,pos=(0,0),scr : pygame.surface.Surface=None,key=None):
-        super().__init__(pos,scr)
+        super().__init__(pos,scr,EntityTag.PLAYER)
         self.key=key
         self.rect=pygame.Rect(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2,self.image.get_width(),self.image.get_height())
     
@@ -59,15 +59,15 @@ class Player(Entity):
                 it.apply(self)
                 if(self.buff==None):
                     
-                    if(it.tag==Itemtag.CAD):
+                    if(it.tag==EntityTag.CADUP):
                         self.buff=it
                 else:
-                    if(self.buff.tag==Itemtag.CAD):
+                    if(self.buff.tag==EntityTag.CADUP):
                         self.buff.stop(self)
                         self.buff=it
         if(self.buff!=None):
            
-            if(self.buff.tag==Itemtag.CAD):
+            if(self.buff.tag==EntityTag.CADUP):
                 if(self.buff.end()):
                     self.buff.stop(self)
                     self.buff=None

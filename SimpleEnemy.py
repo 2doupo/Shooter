@@ -2,6 +2,7 @@ from random import randint
 from turtle import screensize
 import pygame
 from Enemy import Enemy
+from Entity import Entity, EntityTag
 class SimpleEnemy(Enemy):
     size=30
     speed=0.25
@@ -13,7 +14,7 @@ class SimpleEnemy(Enemy):
     pv=100
     color=(255,0,0)
     def __init__(self,scr,pos=(0,0)):
-        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed)
+        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.SIMPLE_ENEMY)
     
     def endcooldown(self):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown

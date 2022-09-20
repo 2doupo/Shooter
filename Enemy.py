@@ -1,15 +1,16 @@
 from random import randint
 import pygame
 from Shot import Shot
-from Entity import Entity
+from Entity import Entity,EntityTag
 from CadenceUp import CadUp
 from Heal import Heal
 class Enemy(Entity):
    
     last_shot_time=-100
     pv=100
-    def __init__(self,scr,cool=300,pos=(0,0),speed=0,image: pygame.surface.Surface=None,shotspeed=1):
-        super().__init__(pos,scr)
+    
+    def __init__(self,scr,cool=300,pos=(0,0),speed=0,image: pygame.surface.Surface=None,shotspeed=1,tag=None):
+        super().__init__(pos,scr,tag)
         self.speed=speed
         self.shotspeed=shotspeed
         self.cooldown=cool

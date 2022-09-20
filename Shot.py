@@ -1,9 +1,9 @@
 import pygame
-from Entity import Entity
+from Entity import Entity, EntityTag
 class Shot(Entity):
     screenw,screenh=pygame.display.get_window_size()
     def __init__(self,pos,scr,size,speed,team):
-        super().__init__(pos,scr)
+        super().__init__(pos,scr,EntityTag.SHOT)
         self.size=size
         self.speed=speed
         self.team=team

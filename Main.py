@@ -11,7 +11,7 @@ from Entity import Entity
 from SimpleEnemy import SimpleEnemy
 from Malicious import Malicious
 from Boss import Boss
-from Item import Item,Itemtag
+from Item import Item
 from ShotFactory import ShotFactory
 from CadenceUp import CadUp
 
@@ -82,7 +82,7 @@ while run:
         #ms_par_frame=arial.render(str(clock.get_time()),False,(0,0,0))
         #screen.blit(ms_par_frame,(screenwidth-60,screenheight-60))
         pygame.display.update()
-        #kvhskvblvjnskleslkvns
+        
         
 
 

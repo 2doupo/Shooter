@@ -1,6 +1,7 @@
 from random import randint
 import pygame
 from Enemy import Enemy
+from Entity import Entity, EntityTag
 class Malicious(Enemy):
     size=52
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(size,size))
@@ -13,7 +14,7 @@ class Malicious(Enemy):
     dir=1
     pv=100
     def __init__(self,scr,pos=(0,0)):
-        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed)
+        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.MALICIOUS)
     
 
     def update(self,enemy_shots,player_shots,items,dt):

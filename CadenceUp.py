@@ -1,4 +1,5 @@
-from Item import Item,Itemtag
+from Entity import EntityTag
+from Item import Item
 import pygame
 from Player import Player
 class CadUp(Item):
@@ -7,7 +8,7 @@ class CadUp(Item):
     taken=False
     start=0
     def __init__(self, pos=..., scr: pygame.surface.Surface = None):
-        super().__init__(Itemtag.CAD,pos, scr,self.size)
+        super().__init__(pos, scr,self.size,EntityTag.CADUP)
 
     def end(self):
         return pygame.time.get_ticks()-self.start>self.duration

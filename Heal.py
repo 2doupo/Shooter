@@ -1,10 +1,11 @@
-from Item import Item,Itemtag
+from Entity import EntityTag
+from Item import Item
 import pygame
 from Player import Player
 class Heal(Item):
     heal=50
     def __init__(self, pos=..., scr: pygame.surface.Surface = None, size=40):
-        super().__init__(Itemtag.Heal, pos, scr, size)
+        super().__init__(pos, scr, size,EntityTag.HEAL)
 
     def update(self,dt):
         super().update(dt)

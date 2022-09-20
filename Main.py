@@ -83,7 +83,7 @@ while run:
         #ms_par_frame=arial.render(str(clock.get_time()),False,(0,0,0))
         #screen.blit(ms_par_frame,(screenwidth-60,screenheight-60))
         pygame.display.update()
-        
+        #kvhskvblvjnskleslkvns
 
 
 

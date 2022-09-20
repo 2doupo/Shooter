@@ -23,10 +23,10 @@ class Enemy(Entity):
         
         
 
-    def update(self,enemy_shots,player_shots,items : pygame.sprite.Group):
+    def update(self,enemy_shots,player_shots,items : pygame.sprite.Group,dt):
         super().update()
         if(self.endcooldown()):
-            enemy_shots.add(Shot(self.pos,self.scr,5,self.shotspeed,False))
+            enemy_shots.add(Shot((self.x,self.y+self.image.get_height()/2),self.scr,5,self.shotspeed,False))
             self.last_shot_time=pygame.time.get_ticks()
         self.rect=pygame.Rect(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2,self.image.get_width(),self.image.get_height())
         shot=pygame.sprite.spritecollide(self,player_shots,True)

@@ -4,8 +4,8 @@ from Enemy import Enemy
 class Malicious(Enemy):
     size=52
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(size,size))
-    speed=1
-    shotspeed=1.5
+    speed=0.25
+    shotspeed=0.7
     cooldown=1000
     last_shot_time=-100
     cooldown_dir_change=300
@@ -16,7 +16,7 @@ class Malicious(Enemy):
         super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed)
     
 
-    def update(self,enemy_shots,player_shots,items):
+    def update(self,enemy_shots,player_shots,items,dt):
         
         
         
@@ -29,8 +29,8 @@ class Malicious(Enemy):
             if(randint(1,100)<=30): 
                 self.dir*=-1
 
-        self.x+=self.dir*self.speed
+        self.x+=self.dir*self.speed*dt
         self.pos=(self.x,self.y)
 
-        super().update(enemy_shots,player_shots,items)
+        super().update(enemy_shots,player_shots,items,dt)
         

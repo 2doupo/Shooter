@@ -11,8 +11,8 @@ class CadUp(Item):
 
     def end(self):
         return pygame.time.get_ticks()-self.start>self.duration
-    def update(self):
-        super().update()
+    def update(self,dt):
+        super().update(dt)
         pygame.draw.rect(self.scr,(255,255,0),self.rect)
 
     def apply(self,pl : Player):

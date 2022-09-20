@@ -4,9 +4,9 @@ import pygame
 from Enemy import Enemy
 class SimpleEnemy(Enemy):
     size=30
-    speed=1
-    shotspeed=1.5
-    image=pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/SimpleEnemy.png')
+    speed=0.25
+    shotspeed=0.7
+    image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/SimpleEnemy.png'),(52,64))
     cooldown=400
     last_shot_time=-100
     dir=1
@@ -19,17 +19,17 @@ class SimpleEnemy(Enemy):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown
         
 
-    def update(self,enemy_shots,player_shots,items):
+    def update(self,enemy_shots,player_shots,items,dt):
         
         
         
         if((self.x>pygame.display.get_window_size()[0])|(0>self.x)):
             self.dir*=-1
             #print("change dir")
-        self.x+=self.dir*self.speed
+        self.x+=self.dir*self.speed*dt
         self.pos=(self.x,self.y)
         
-        super().update(enemy_shots,player_shots,items)
+        super().update(enemy_shots,player_shots,items,dt)
         
         #pygame.draw.circle(self.scr,self.color,self.pos,self.size/2)
         

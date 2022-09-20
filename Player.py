@@ -5,8 +5,8 @@ from Shot import Shot
 from Entity import Entity
 class Player(Entity):
     screenw,screenh=pygame.display.get_window_size()
-    speed=3
-    shotspeed=5
+    speed=0.5
+    shotspeed=1.3
     cooldown=200
     last_shot_time=-100
     totalpv=100
@@ -24,25 +24,25 @@ class Player(Entity):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown
         
 
-    def update(self,playershots : pygame.sprite.Group,enemy_shots,items ):
+    def update(self,playershots : pygame.sprite.Group,enemy_shots,items,dt):
         
         self.rect=pygame.Rect(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2,self.image.get_width(),self.image.get_height())
     
         if(pygame.key.get_pressed()[self.key[0]]):
             if(self.y+self.speed<self.screenh):
-                self.y+=self.speed
+                self.y+=self.speed*dt
                 self.pos=(self.x,self.y)
         if(pygame.key.get_pressed()[self.key[1]]):
             if(self.y-self.speed>0):
-                self.y+=-self.speed
+                self.y+=-self.speed*dt
                 self.pos=(self.x,self.y)
         if(pygame.key.get_pressed()[self.key[2]]):
             if(self.x-self.speed>0):
-                self.x+=-self.speed
+                self.x+=-self.speed*dt
                 self.pos=(self.x,self.y)
         if(pygame.key.get_pressed()[self.key[3]]):
             if(self.x+self.speed<self.screenw):
-                self.x+=self.speed
+                self.x+=self.speed*dt
                 self.pos=(self.x,self.y)
         if(pygame.key.get_pressed()[self.key[4]]&Player.endcooldown(self)):
             

@@ -1,5 +1,4 @@
 from random import randint
-from turtle import screensize
 import pygame
 from Enemy import Enemy
 from Entity import Entity, EntityTag
@@ -13,24 +12,25 @@ class SimpleEnemy(Enemy):
     dir=1
     pv=100
     color=(255,0,0)
-    def __init__(self,scr,pos=(0,0)):
-        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.SIMPLE_ENEMY)
+    def __init__(self,entitys,scr,pos=(0,0)):
+        super().__init__(entitys,scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.SIMPLE_ENEMY)
     
     def endcooldown(self):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown
         
-
-    def update(self,enemy_shots,player_shots,items,dt):
+    def kill(self) -> None:
+        super().kill()
+    def update(self,entitys):
         
         
         
         if((self.x>pygame.display.get_window_size()[0])|(0>self.x)):
             self.dir*=-1
             #print("change dir")
-        self.x+=self.dir*self.speed*dt
+        self.x+=self.dir*self.speed*entitys.dt
         self.pos=(self.x,self.y)
         
-        super().update(enemy_shots,player_shots,items,dt)
+        super().update(entitys)
         
         #pygame.draw.circle(self.scr,self.color,self.pos,self.size/2)
         

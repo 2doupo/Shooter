@@ -1,24 +1,27 @@
 import pygame
 from Entity import Entity, EntityTag
 class Shot(Entity):
+    team=None
     screenw,screenh=pygame.display.get_window_size()
-    def __init__(self,pos,scr,size,speed,team):
-        super().__init__(pos,scr,EntityTag.SHOT)
+    def __init__(self,entitys,pos,scr,size,speed,tag):
+        self.tag=tag
+        super().__init__(entitys,pos,scr,tag)
         self.size=size
         self.speed=speed
-        self.team=team
+        
         self.rect=pygame.Rect(self.x-self.size,self.y-self.size,2*self.size,2*self.size)
         
 
-
-    def update(self,dt):
+    def kill(self) -> None:
+        super().kill()
+    def update(self,entitys):
         
         
-        if(self.team):
-            self.y+=-self.speed*dt
+        if(self.tag==EntityTag.PLAYERSHOT):
+            self.y+=-self.speed*entitys.dt
             col=(255,255,0)
-        else :
-            self.y+=self.speed*dt
+        elif(self.tag==EntityTag.ENEMYSHOT) :
+            self.y+=self.speed*entitys.dt
             col=(255,128,0)
         self.pos=(self.x,self.y)
         self.rect=pygame.Rect(self.x-self.size,self.y-self.size,2*self.size,2*self.size)

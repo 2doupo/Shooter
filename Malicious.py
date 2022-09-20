@@ -13,11 +13,12 @@ class Malicious(Enemy):
     last_dir_change=-100
     dir=1
     pv=100
-    def __init__(self,scr,pos=(0,0)):
-        super().__init__(scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.MALICIOUS)
+    def __init__(self,entitys,scr,pos=(0,0)):
+        super().__init__(entitys,scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.MALICIOUS)
     
-
-    def update(self,enemy_shots,player_shots,items,dt):
+    def kill(self) -> None:
+        super().kill()
+    def update(self,entitys):
         
         
         
@@ -30,8 +31,8 @@ class Malicious(Enemy):
             if(randint(1,100)<=30): 
                 self.dir*=-1
 
-        self.x+=self.dir*self.speed*dt
+        self.x+=self.dir*self.speed*entitys.dt
         self.pos=(self.x,self.y)
 
-        super().update(enemy_shots,player_shots,items,dt)
+        super().update(entitys)
         

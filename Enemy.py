@@ -23,8 +23,13 @@ class Enemy(Entity):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown
       
         
-    def kill(self) -> None:
+    def kill(self,entitys) -> None:
         super().kill()
+        if(randint(1,100)<=50):
+                if(randint(1,100)<=50):
+                    CadenceUp.CadUp(entitys,self.pos,self.scr)
+                else:
+                    Heal(entitys,self.pos,self.scr)
 
     def update(self,entitys):
         
@@ -37,14 +42,7 @@ class Enemy(Entity):
         if(len(shot)!=0):
             self.pv+=-10
         if(self.pv<=0):
-            if(randint(1,100)<=50):
-                if(randint(1,100)<=50):
-                    CadenceUp.CadUp(entitys,self.pos,self.scr)
-                else:
-                    Heal(entitys,self.pos,self.scr)
-
-
-            self.kill()
+            self.kill(entitys)
         self.scr.blit(self.image,self.rect)
         
         

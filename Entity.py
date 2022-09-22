@@ -20,18 +20,20 @@ class EntityTag():
         
     PLAYER=0
     
-    #ENEMY=1
-    SIMPLE_ENEMY=2
-    MALICIOUS=3
-    BOSS=4
+    #ENEMY
+    SIMPLE_ENEMY=1
+    MALICIOUS=2
+    BOSS=3
     
-    SHOT=5
-    PLAYERSHOT=9
-    ENEMYSHOT=10
+    #SHOT
+    PLAYERSHOT=4
+    ENEMYSHOT=5
 
-    #ITEM=6
-    CADUP=7
-    HEAL=8
+    #ITEM
+    CADUP=6
+    HEAL=7
+    DSHOT=8
+    SHIELD=9
 
 class EntInt():
   
@@ -51,7 +53,7 @@ class EntInt():
             self.players.add(ent)
         elif(ent.tag in ([EntityTag.SIMPLE_ENEMY,EntityTag.MALICIOUS,EntityTag.BOSS])):
             self.enemys.add(ent)
-        elif(ent.tag in [EntityTag.CADUP,EntityTag.HEAL]):
+        elif(ent.tag in [EntityTag.CADUP,EntityTag.HEAL,EntityTag.DSHOT]):
             self.items.add(ent)
         elif(ent.tag==EntityTag.PLAYERSHOT):
             self.player_shots.add(ent)

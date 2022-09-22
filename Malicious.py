@@ -16,8 +16,8 @@ class Malicious(Enemy):
     def __init__(self,entitys,scr,pos=(0,0)):
         super().__init__(entitys,scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.MALICIOUS)
     
-    def kill(self) -> None:
-        super().kill()
+    def kill(self,entitys) -> None:
+        super().kill(entitys)
     def update(self,entitys):
         
         

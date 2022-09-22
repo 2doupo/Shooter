@@ -18,8 +18,8 @@ class Boss(Enemy):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown
         
 
-    def kill(self) -> None:
-        super().kill()
+    def kill(self,entitys) -> None:
+        super().kill(entitys)
     def update(self,entitys):
         
         if((self.x>pygame.display.get_window_size()[0])|(0>self.x)):

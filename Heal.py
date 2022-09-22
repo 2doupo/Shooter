@@ -13,5 +13,6 @@ class Heal(Item):
     def apply(self,pl):
         super().apply()
         pl.pv=min(pl.totalpv,pl.pv+self.heal)
+        self.kill()
     def kill(self) -> None:
         super().kill()

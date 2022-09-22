@@ -4,7 +4,7 @@ import pygame
 
 class CadUp(Item):
     size=40
-    duration=500
+    duration=5000
     start=None
     def __init__(self,entitys, pos=..., scr: pygame.surface.Surface = None):
         super().__init__(entitys,pos, scr,self.size,EntityTag.CADUP)
@@ -20,7 +20,7 @@ class CadUp(Item):
     
     def apply(self,pl):
         self.pl=pl
-        super().apply()
+        super().apply(pl)
         if(pl.buff!=None):
             pl.buff.stop()
         pl.buff=self

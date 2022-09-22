@@ -58,17 +58,27 @@ class Player(Entity):
         self.pos=(self.x, self.y)
         shot=pygame.sprite.spritecollide(self,entity.enemy_shots,True)
         if(len(shot)!=0):
-            self.pv+=-10
+            if(self.buff!=None):
+                if(self.buff.tag!=EntityTag.SHIELD):
+                    self.pv-=10
+            else:
+                self.pv-=10
         
         item: list[Item]=pygame.sprite.spritecollide(self,entity.items,True)
         if(len(item)!=0):
             for it in item:
                 it.apply(self)
+        
+            
+        
+        self.scr.blit(self.image,self.rect)
         if(self.buff!=None):
             if(self.buff.end()):
                 self.buff.stop()
-        
-        self.scr.blit(self.image,self.rect)
+        if(self.buff!=None):
+            if(self.buff.tag==EntityTag.SHIELD):
+                pygame.draw.circle(self.scr,(0,0,255),self.pos,self.buff.size,5)
+
         pygame.draw.rect(self.scr,(0,0,0),pygame.Rect(self.x-self.image.get_width()/2,self.y+self.image.get_height(),self.image.get_width(),10))
         pygame.draw.rect(self.scr,(0,255,0),pygame.Rect(self.x-self.image.get_width()/2,self.y+self.image.get_height(),self.image.get_width()*self.pv/self.totalpv,10))
         #pygame.draw.rect(self.scr,(255,0,0),self.rect)

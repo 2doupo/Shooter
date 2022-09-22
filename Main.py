@@ -1,4 +1,6 @@
 import pygame
+
+from Shield import Shield
 pygame.init()
 screenwidth=640
 screenheight=800
@@ -35,7 +37,7 @@ for i in range(maliciousnb):
         Malicious(entint,screen,(screenwidth/2,50))
 SimpleEnemy(entint,screen,(screenwidth/2,50))
 
-DShot(entint,(50,400),screen)
+shield=Shield(entint,(50,400),screen)
 CadUp(entint,(50,200),screen)
 
 clock=pygame.time.Clock()
@@ -70,6 +72,8 @@ while run:
         #ms_par_frame=arial.render(str(clock.get_time()),False,(0,0,0))
         #screen.blit(ms_par_frame,(screenwidth-60,screenheight-60))
         #print(entint.enemy_shots.__len__(),entint.player_shots.__len__())
+        #print(shield.pos)
+        #print(entint.items)
         pygame.display.update()
         
         

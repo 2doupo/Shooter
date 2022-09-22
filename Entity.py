@@ -14,7 +14,7 @@ class Entity(pygame.sprite.Sprite):
 
 
     def update(self,entitys):
-        super().update(self)
+        super().update()
     
 class EntityTag():
         
@@ -53,7 +53,7 @@ class EntInt():
             self.players.add(ent)
         elif(ent.tag in ([EntityTag.SIMPLE_ENEMY,EntityTag.MALICIOUS,EntityTag.BOSS])):
             self.enemys.add(ent)
-        elif(ent.tag in [EntityTag.CADUP,EntityTag.HEAL,EntityTag.DSHOT]):
+        elif(ent.tag in [EntityTag.CADUP,EntityTag.HEAL,EntityTag.DSHOT,EntityTag.SHIELD]):
             self.items.add(ent)
         elif(ent.tag==EntityTag.PLAYERSHOT):
             self.player_shots.add(ent)

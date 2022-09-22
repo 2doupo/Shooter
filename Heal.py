@@ -11,7 +11,7 @@ class Heal(Item):
         super().update(entitys)
         pygame.draw.rect(self.scr,(0,255,0),self.rect)
     def apply(self,pl):
-        super().apply()
+        super().apply(pl)
         pl.pv=min(pl.totalpv,pl.pv+self.heal)
         self.kill()
     def kill(self) -> None:

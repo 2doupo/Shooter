@@ -1,9 +1,12 @@
+
 from random import randint
 import pygame
-from Shot import Shot
-from Entity import Entity,EntityTag
-import CadenceUp
-from Heal import Heal
+from entity.item.DoubleShot import DShot
+from entity.item.Shield import Shield
+from entity.Shot import Shot
+from entity.Entity import Entity,EntityTag
+from entity.item.CadenceUp import CadUp
+from entity.item.Heal import Heal
 
 class Enemy(Entity):
    
@@ -26,10 +29,15 @@ class Enemy(Entity):
     def kill(self,entitys) -> None:
         super().kill()
         if(randint(1,100)<=50):
-                if(randint(1,100)<=50):
-                    CadenceUp.CadUp(entitys,self.pos,self.scr)
-                else:
-                    Heal(entitys,self.pos,self.scr)
+            temp=randint(1,100)
+            if(temp<=25):
+                CadUp(entitys,self.pos,self.scr)
+            elif(25<temp<=50):
+                Heal(entitys,self.pos,self.scr)
+            elif(50<temp<=75):
+                DShot(entitys,self.pos,self.scr)
+            else: 
+                Shield(entitys,self.pos,self.scr)
 
     def update(self,entitys):
         

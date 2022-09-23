@@ -1,20 +1,5 @@
 import pygame
-class Entity(pygame.sprite.Sprite):
-    def __init__(self,entitys,pos=(0,0),scr : pygame.surface.Surface=None,tag=None) :
-        super().__init__()
-        self.pos=pos
-        self.x=pos[0]
-        self.y=pos[1]
-        self.scr=scr
-        self.tag=tag
-        entitys.add(self)
 
-    def kill(self) -> None:
-        super().kill()
-
-
-    def update(self,entitys):
-        super().update()
     
 class EntityTag():
         
@@ -47,7 +32,7 @@ class EntInt():
         self.shots =pygame.sprite.Group()
         self.player_shots  =pygame.sprite.Group()
         self.enemy_shots  =pygame.sprite.Group()
-    def add(self,ent : Entity) -> None:
+    def add(self,ent) -> None:
         self.entitys.add(ent)
         if(ent.tag==EntityTag.PLAYER):
             self.players.add(ent)
@@ -75,5 +60,22 @@ class EntInt():
     def update(self,dt):
         self.dt=dt
         self.entitys.update(self)
+
+class Entity(pygame.sprite.Sprite):
+    def __init__(self,entint : EntInt,pos=(0,0),scr : pygame.surface.Surface=None,tag=None) :
+        super().__init__()
+        self.pos=pos
+        self.x=pos[0]
+        self.y=pos[1]
+        self.scr=scr
+        self.tag=tag
+        entint.add(self)
+
+    def kill(self) -> None:
+        super().kill()
+
+
+    def update(self,entitys):
+        super().update()
         
 

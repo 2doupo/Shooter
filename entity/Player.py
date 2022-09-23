@@ -1,7 +1,7 @@
 import pygame
-from Item import Item
-from Shot import Shot
-from Entity import Entity,EntityTag
+from entity.item.Item import Item
+from entity.Shot import Shot
+from entity.Entity import Entity,EntityTag
 class Player(Entity):
     screenw,screenh=pygame.display.get_window_size()
     speed=0.5
@@ -10,9 +10,7 @@ class Player(Entity):
     last_shot_time=-100
     totalpv=100
     pv=100
-    item_duration=5000
     buff : Item=None
-    item_start=0
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/boat1.png'),(32,60))
     def __init__(self,entitys,pos=(0,0),scr : pygame.surface.Surface=None,key=None):
         super().__init__(entitys,pos,scr,EntityTag.PLAYER)
@@ -63,7 +61,9 @@ class Player(Entity):
                     self.pv-=10
             else:
                 self.pv-=10
-        
+        enemy=pygame.sprite.spritecollide(self,entity.enemys,False)
+        if(len(enemy)!=0):
+            self.pv-=0.5
         item: list[Item]=pygame.sprite.spritecollide(self,entity.items,True)
         if(len(item)!=0):
             for it in item:

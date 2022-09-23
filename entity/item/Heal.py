@@ -1,7 +1,7 @@
-from Entity import EntityTag
-from Item import Item
+from entity.Entity import EntityTag
+from entity.item.Item import Item
 import pygame
-import Player
+import entity.Player as Player
 class Heal(Item):
     heal=50
     def __init__(self, entitys,pos=..., scr: pygame.surface.Surface = None, size=40):

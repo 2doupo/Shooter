@@ -1,5 +1,5 @@
-from Entity import EntityTag
-from Item import Item
+from entity.Entity import EntityTag
+from entity.item.Item import Item
 import pygame
 
 class CadUp(Item):

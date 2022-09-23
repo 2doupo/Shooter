@@ -1,5 +1,5 @@
 import pygame
-from Entity import Entity, EntityTag
+from entity.Entity import Entity, EntityTag
 class Shot(Entity):
     team=None
     screenw,screenh=pygame.display.get_window_size()

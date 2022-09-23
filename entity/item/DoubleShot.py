@@ -1,6 +1,6 @@
 import pygame
-from Item import Item
-from Entity import EntityTag
+from entity.item.Item import Item
+from entity.Entity import EntityTag
 class DShot(Item):
     size=40
     duration=5000

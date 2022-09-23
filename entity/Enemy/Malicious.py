@@ -1,7 +1,7 @@
 from random import randint
 import pygame
-from Enemy import Enemy
-from Entity import Entity, EntityTag
+from entity.Enemy.Enemy import Enemy
+from entity.Entity import Entity, EntityTag
 class Malicious(Enemy):
     size=52
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(size,size))

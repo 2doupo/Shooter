@@ -1,4 +1,4 @@
-from Entity import Entity
+from entity.Entity import Entity
 import pygame
 
 class Item(Entity):

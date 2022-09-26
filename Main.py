@@ -15,9 +15,12 @@ from entity.Enemy.Malicious import Malicious
 from entity.Enemy.Boss import Boss
 from entity.Entity import EntInt,EntityTag
 from Level import Level
-
-level1=Level(screen,screenwidth,screenheight)
-
+from Menu import Menu
+run = True
+level=Level(screen,screenwidth,screenheight)
+menu=Menu(screen,screenwidth,screenheight,run)
+Player(level.entint,scr=screen,pos=(screenwidth/2, screenheight/2),key=(pygame.K_DOWN,pygame.K_UP,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_KP2))
+Player(level.entint,scr=screen,pos=(screenwidth/2, screenheight/2),key=(pygame.K_s,pygame.K_z,pygame.K_q,pygame.K_d,pygame.K_g))
 
 pygame.init()
 pygame.display.set_caption("Test")
@@ -25,31 +28,19 @@ pygame.display.set_icon(pygame.transform.scale(pygame.image.load('C:/Users/Arthu
 arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
 bigarial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',100)
 
-run = True
+
 while run:
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
         
-        level1.update()
+        level.update()
+        #menu.update()
+        #run=menu.run
         
-        fps=arial.render("fps :" + str(int(level1.clock.get_fps())),False,(0,0,0),(255,255,255))
-        screen.blit(fps,(screenwidth-70,screenheight-30))
-        
-        #print(clock.get_time())
-        
-        #ms_par_frame=arial.render(str(clock.get_time()),False,(0,0,0))
-        #screen.blit(ms_par_frame,(screenwidth-60,screenheight-60))
-        #print(entint.enemy_shots.__len__(),entint.player_shots.__len__())
-        #print(shield.pos)
-        #print(entint.items)
+       
         pygame.display.update()
-        
-        
-        
-
-
         
 
 pygame.quit() 

@@ -1,4 +1,5 @@
 
+from turtle import st
 from entity.Entity import EntInt
 from entity.Player import Player
 from entity.Enemy.Boss import Boss
@@ -9,28 +10,31 @@ from entity.item.CadenceUp import CadUp
 import pygame
 
 class Level():
-    
+    wave=1
     def __init__(self,screen,screenw,screenh) -> None:
         self.bigarial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',100)
+        self.arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
         self.entint=EntInt()
         self.screen=screen
         self.screenw=screenw
         self.screenh=screenh
-        self.bossfight=False 
-        Player(self.entint,scr=screen,pos=(screenw/2, screenh/2),key=(pygame.K_DOWN,pygame.K_UP,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_KP2))
-        Player(self.entint,scr=screen,pos=(screenw/2, screenh/2),key=(pygame.K_s,pygame.K_z,pygame.K_q,pygame.K_d,pygame.K_g))
-        maliciousnb=5
-        for i in range(maliciousnb):
-                Malicious(self.entint,screen,(screenw/2,50))
-        SimpleEnemy(self.entint,screen,(screenw/2,50))
-
-        shield=Shield(self.entint,(50,400),screen)
-        CadUp(self.entint,(50,200),screen)
+        
         self.clock=pygame.time.Clock()
+        self.start()
 
     
     def start(self):
-        pass
+        self.bossfight=False 
+        
+        simple_nb=3*self.wave
+        malicious_nb=2*self.wave
+        for i in range(malicious_nb):
+                Malicious(self.entint,self.screen,(self.screenw/2,50))
+        for i in range(simple_nb):
+            SimpleEnemy(self.entint,self.screen,(self.screenw/2,50))
+
+
+
     def update(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -51,9 +55,12 @@ class Level():
                 self.bossfight=True
         elif((self.entint.enemys.__len__()==0)& (self.bossfight)):
                 #run=False
-                win=self.bigarial.render("Victory !",False,(0,0,0))
-                
-                self.screen.blit(win,((self.screenw-win.get_width())/2,self.screenh/2))
+                #win=self.bigarial.render("Victory !",False,(0,0,0))
+                #self.screen.blit(win,((self.screenw-win.get_width())/2,self.screenh/2))
+                self.wave+=1
+                self.start()
+        fps=self.arial.render("fps :" + str(int(self.clock.get_fps())),False,(0,0,0),(255,255,255))
+        self.screen.blit(fps,(self.screenw-70,self.screenh-30))
         
 
     

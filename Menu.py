@@ -12,6 +12,7 @@ class Menu():
     arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',40)
     last_up_pressed=False
     last_down_pressed=False
+    start_level=False
     def __init__(self,screen,screenw,screenh,run) -> None:
         self.run=run
         self.screen=screen
@@ -43,7 +44,7 @@ class Menu():
     def clic(self):
         match self.selected_button :
             case Button.START: 
-                pass
+                self.start_level=True
             case Button.LEVELS : 
                 pass
             case Button.OPTIONS: 

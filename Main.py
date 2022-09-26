@@ -17,6 +17,8 @@ from entity.Entity import EntInt,EntityTag
 from Level import Level
 from Menu import Menu
 run = True
+in_menu = True
+in_level= False
 level=Level(screen,screenwidth,screenheight)
 menu=Menu(screen,screenwidth,screenheight,run)
 Player(level.entint,scr=screen,pos=(screenwidth/2, screenheight/2),key=(pygame.K_DOWN,pygame.K_UP,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_KP2))
@@ -35,9 +37,17 @@ while run:
             if event.type == pygame.QUIT:
                 run = False
         
-        level.update()
-        #menu.update()
-        #run=menu.run
+        if(in_menu):
+                menu.update()
+                run=menu.run
+                if(menu.start_level):
+                        in_level=True
+                        in_menu=False
+        elif(in_level):
+                level.update()
+
+                
+        
         
        
         pygame.display.update()

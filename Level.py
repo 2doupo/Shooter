@@ -1,5 +1,5 @@
 
-from turtle import st
+from random import randint
 from entity.Entity import EntInt
 from entity.Player import Player
 from entity.Enemy.Boss import Boss
@@ -30,9 +30,9 @@ class Level():
         simple_nb=3*self.wave
         malicious_nb=2*self.wave
         for i in range(malicious_nb):
-                Malicious(self.entint,self.screen,(self.screenw/2,50))
+                Malicious(self.entint,self.screen,(randint(0,self.screenw-1),50))
         for i in range(simple_nb):
-                SimpleEnemy(self.entint,self.screen,(self.screenw/2,50))
+                SimpleEnemy(self.entint,self.screen,(randint(0,self.screenw-1),50))
 
 
 

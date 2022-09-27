@@ -2,6 +2,7 @@ from random import randint
 import pygame
 from entity.Enemy.Enemy import Enemy
 from entity.Entity import Entity, EntityTag
+from entity.Shot import Shot
 class Malicious(Enemy):
     size=52
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(size,size))
@@ -33,6 +34,8 @@ class Malicious(Enemy):
 
         self.x+=self.dir*self.speed*entitys.dt
         self.pos=(self.x,self.y)
-
+        if(self.endcooldown()):
+            Shot(entitys,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.ENEMYSHOT)
+            self.last_shot_time=pygame.time.get_ticks()
         super().update(entitys)
         

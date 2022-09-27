@@ -42,9 +42,7 @@ class Enemy(Entity):
     def update(self,entitys):
         
         super().update(entitys)
-        if(self.endcooldown()):
-            Shot(entitys,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.ENEMYSHOT)
-            self.last_shot_time=pygame.time.get_ticks()
+        
         self.rect=pygame.Rect(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2,self.image.get_width(),self.image.get_height())
         shot=pygame.sprite.spritecollide(self,entitys.player_shots,True)
         if(len(shot)!=0):

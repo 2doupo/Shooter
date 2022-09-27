@@ -2,6 +2,7 @@ from random import randint
 import pygame
 from entity.Enemy.Enemy import Enemy
 from entity.Entity import Entity, EntityTag
+from entity.Shot import Shot
 class SimpleEnemy(Enemy):
     size=30
     speed=0.25
@@ -30,6 +31,9 @@ class SimpleEnemy(Enemy):
         self.x+=self.dir*self.speed*entitys.dt
         self.pos=(self.x,self.y)
         
+        if(self.endcooldown()):
+            Shot(entitys,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.ENEMYSHOT)
+            self.last_shot_time=pygame.time.get_ticks()
         super().update(entitys)
         
         #pygame.draw.circle(self.scr,self.color,self.pos,self.size/2)

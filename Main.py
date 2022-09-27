@@ -24,7 +24,6 @@ menu=Menu(screen,screenwidth,screenheight,run)
 Player(level.entint,scr=screen,pos=(screenwidth/2, screenheight/2),key=(pygame.K_DOWN,pygame.K_UP,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_KP2))
 Player(level.entint,scr=screen,pos=(screenwidth/2, screenheight/2),key=(pygame.K_s,pygame.K_z,pygame.K_q,pygame.K_d,pygame.K_g))
 
-pygame.init()
 pygame.display.set_caption("Test")
 pygame.display.set_icon(pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(32,32)))
 arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
@@ -43,6 +42,7 @@ while run:
                 if(menu.start_level):
                         in_level=True
                         in_menu=False
+                        level.start()
         elif(in_level):
                 level.update()
 

@@ -19,11 +19,12 @@ class Level():
         self.screenw=screenw
         self.screenh=screenh
         
-        self.clock=pygame.time.Clock()
-        self.start()
+        
+        
 
     
     def start(self):
+        self.clock=pygame.time.Clock()
         self.bossfight=False 
         
         simple_nb=3*self.wave
@@ -31,7 +32,7 @@ class Level():
         for i in range(malicious_nb):
                 Malicious(self.entint,self.screen,(self.screenw/2,50))
         for i in range(simple_nb):
-            SimpleEnemy(self.entint,self.screen,(self.screenw/2,50))
+                SimpleEnemy(self.entint,self.screen,(self.screenw/2,50))
 
 
 

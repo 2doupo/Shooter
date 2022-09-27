@@ -35,7 +35,6 @@ class Boss(Enemy):
             if(self.nb_shot!=0):
                 Shot(entitys,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.ENEMYSHOT)
                 
-                print(self.nb_shot)
             self.last_shot_time=pygame.time.get_ticks()
             self.nb_shot=(self.nb_shot+1)%10
         super().update(entitys)

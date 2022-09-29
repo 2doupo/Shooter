@@ -10,7 +10,8 @@ class Player(Entity):
     last_shot_time=-100
     totalpv=100
     pv=100
-    buff : Item=None
+    buffs : list[Item]=[]
+    bufftags : list[EntityTag]=[]
     image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/boat1.png'),(32,60))
     def __init__(self,entitys,pos=(0,0),scr : pygame.surface.Surface=None,key=None):
         super().__init__(entitys,pos,scr,EntityTag.PLAYER)
@@ -43,8 +44,9 @@ class Player(Entity):
             if(self.x+self.speed<self.screenw):
                 self.x+=self.speed*entity.dt
         if(pygame.key.get_pressed()[self.key[4]]&Player.endcooldown(self)):
-            if(self.buff!=None):
-                if(self.buff.tag==EntityTag.DSHOT):
+            if(len(self.buffs)!=0):
+                
+                if(EntityTag.DSHOT in self.bufftags):
                     Shot(entity,(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)   
                     Shot(entity,(self.x+self.image.get_width()/2,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)
                 else:
@@ -56,8 +58,8 @@ class Player(Entity):
         self.pos=(self.x, self.y)
         shot=pygame.sprite.spritecollide(self,entity.enemy_shots,True)
         if(len(shot)!=0):
-            if(self.buff!=None):
-                if(self.buff.tag!=EntityTag.SHIELD):
+            if(len(self.buffs)!=0):
+                if(EntityTag.SHIELD in self.buffs):
                     self.pv-=10
             else:
                 self.pv-=10
@@ -72,12 +74,14 @@ class Player(Entity):
             
         
         self.scr.blit(self.image,self.rect)
-        if(self.buff!=None):
-            if(self.buff.end()):
-                self.buff.stop()
-        if(self.buff!=None):
-            if(self.buff.tag==EntityTag.SHIELD):
-                pygame.draw.circle(self.scr,(0,0,255),self.pos,self.buff.size,5)
+        if(len(self.buffs)!=0):
+            for buff in self.buffs:
+                if(buff!=None):
+                    if(buff.end()):
+                        buff.stop()
+        if(len(self.buffs)!=0):
+            if(EntityTag.SHIELD in self.bufftags):
+                pygame.draw.circle(self.scr,(0,0,255),self.pos,40,5)
 
         pygame.draw.rect(self.scr,(0,0,0),pygame.Rect(self.x-self.image.get_width()/2,self.y+self.image.get_height(),self.image.get_width(),10))
         pygame.draw.rect(self.scr,(0,255,0),pygame.Rect(self.x-self.image.get_width()/2,self.y+self.image.get_height(),self.image.get_width()*self.pv/self.totalpv,10))

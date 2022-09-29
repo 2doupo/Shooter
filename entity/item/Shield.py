@@ -22,15 +22,15 @@ class Shield(Item):
     def apply(self,pl):
         super().apply(pl)
         self.pl=pl
-        if(pl.buff!=None):
-            pl.buff.stop()
-        pl.buff=self
+        pl.buffs.append(self)
+        pl.bufftags.append(self.tag)
         self.start=pygame.time.get_ticks()
 
     def kill(self) -> None:
         return super().kill()
     def stop(self):
-        self.pl.buff=None
+        self.pl.buffs.remove(self)
+        self.pl.bufftags.remove(self.tag)
         self.kill()
 
     

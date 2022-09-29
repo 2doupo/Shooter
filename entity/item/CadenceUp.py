@@ -21,13 +21,13 @@ class CadUp(Item):
     def apply(self,pl):
         self.pl=pl
         super().apply(pl)
-        if(pl.buff!=None):
-            pl.buff.stop()
-        pl.buff=self
+        pl.buffs.append(self)
+        pl.bufftags.append(self.tag)
         pl.cooldown*=1/2
         self.start=pygame.time.get_ticks()
     def stop(self):
-        self.pl.buff=None
+        self.pl.buffs.remove(self)
+        self.pl.bufftags.remove(self.tag)
         self.pl.cooldown*=2
         self.kill()
     def kill(self) -> None:

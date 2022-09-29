@@ -24,6 +24,9 @@ class Level():
 
     
     def start(self):
+        if(self.entint.players.__len__()==0):
+                Player(self.entint,scr=self.screen,pos=(self.screenw/2, self.screenh/2),key=(pygame.K_DOWN,pygame.K_UP,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_KP2))
+                Player(self.entint,scr=self.screen,pos=(self.screenw/2, self.screenh/2),key=(pygame.K_s,pygame.K_z,pygame.K_q,pygame.K_d,pygame.K_g))
         self.clock=pygame.time.Clock()
         self.bossfight=False 
         
@@ -41,7 +44,7 @@ class Level():
             if event.type == pygame.QUIT:
                 run = False
         dt = self.clock.tick(120)
-        pygame.draw.rect(self.screen, (135,206,235), pygame.Rect(0,0,self.screenw, self.screenh))
+        #pygame.draw.rect(self.screen, (135,206,235), pygame.Rect(0,0,self.screenw, self.screenh))
         
         self.entint.update(dt)
 

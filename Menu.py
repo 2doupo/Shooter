@@ -13,8 +13,8 @@ class Menu():
     last_up_pressed=False
     last_down_pressed=False
     start_level=False
-    def __init__(self,screen,screenw,screenh,run) -> None:
-        self.run=run
+    def __init__(self,screen,screenw,screenh) -> None:
+        self.clock=pygame.time.Clock()
         self.screen=screen
         self.screenw=screenw
         self.screenh=screenh
@@ -50,9 +50,12 @@ class Menu():
             case Button.OPTIONS: 
                 pass
             case Button.QUIT : 
-                self.run=False
+                pygame.quit()
+                quit()
+                
                 
     def update(self):
+        dt = self.clock.tick(120)
         if((not pygame.key.get_pressed()[pygame.K_UP]) & self.last_up_pressed):
 
             self.selected_button=(self.selected_button-1)%4
@@ -66,7 +69,7 @@ class Menu():
         self.last_up_pressed=pygame.key.get_pressed()[pygame.K_UP]
         self.last_down_pressed=pygame.key.get_pressed()[pygame.K_DOWN]
 
-        pygame.draw.rect(self.screen, (135,206,235), pygame.Rect(0,0,self.screenw, self.screenh))
+        #pygame.draw.rect(self.screen, (135,206,235), pygame.Rect(0,0,self.screenw, self.screenh))
         
         
         self.screen.blit(self.start,((self.screenw-self.start.get_width())/2,self.screenh/5))

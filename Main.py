@@ -20,25 +20,31 @@ run = True
 in_menu = True
 in_level= False
 level=Level(screen,screenwidth,screenheight)
-menu=Menu(screen,screenwidth,screenheight,run)
-Player(level.entint,scr=screen,pos=(screenwidth/2, screenheight/2),key=(pygame.K_DOWN,pygame.K_UP,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_KP2))
-Player(level.entint,scr=screen,pos=(screenwidth/2, screenheight/2),key=(pygame.K_s,pygame.K_z,pygame.K_q,pygame.K_d,pygame.K_g))
-
+menu=Menu(screen,screenwidth,screenheight)
+water=pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/Watergreen.jpg')
+w1=water.get_width()
+w2=water.get_height()
+scale=3.5
+water=pygame.transform.scale(water,(w1*scale,w2*scale))
 pygame.display.set_caption("Test")
 pygame.display.set_icon(pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(32,32)))
 arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
 bigarial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',100)
-
-
+y=0
+backspeed=0.5
 while run:
         
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
+                if event.type == pygame.QUIT:
+                        run = False
         
+        y+=backspeed
+        for i in range(int(screenwidth/water.get_width())+1):
+                for j in range(-1,int(screenheight/water.get_height())+1):
+                        screen.blit(water,(i*water.get_width(),(j*water.get_height()+y)%(screenheight+water.get_height())-water.get_height()))
         if(in_menu):
                 menu.update()
-                run=menu.run
+                
                 if(menu.start_level):
                         in_level=True
                         in_menu=False

@@ -9,7 +9,7 @@ class Button():
 
 class Menu():
 
-    arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',40)
+    arial=pygame.font.Font('Font/arial.ttf',40)
     last_up_pressed=False
     last_down_pressed=False
     start_level=False

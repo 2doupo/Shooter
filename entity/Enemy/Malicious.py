@@ -5,7 +5,7 @@ from entity.Entity import Entity, EntityTag
 from entity.Shot import Shot
 class Malicious(Enemy):
     size=52
-    image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(size,size))
+    image=pygame.transform.scale(pygame.image.load('Image/malicious.png'),(size,size))
     speed=0.25
     shotspeed=0.7
     cooldown=1000

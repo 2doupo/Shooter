@@ -7,7 +7,7 @@ class SimpleEnemy(Enemy):
     size=30
     speed=0.25
     shotspeed=0.7
-    image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/SimpleEnemy.png'),(52,64))
+    image=pygame.transform.scale(pygame.image.load('Image/SimpleEnemy.png'),(52,64))
     cooldown=400
     last_shot_time=-100
     dir=1

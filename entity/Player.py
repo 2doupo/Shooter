@@ -12,7 +12,7 @@ class Player(Entity):
     pv=100
     buffs : list[Item]=[]
     bufftags : list[EntityTag]=[]
-    image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/boat1.png'),(32,60))
+    image=pygame.transform.scale(pygame.image.load('Image/boat1.png'),(32,60))
     def __init__(self,entitys,pos=(0,0),scr : pygame.surface.Surface=None,key=None):
         super().__init__(entitys,pos,scr,EntityTag.PLAYER)
         self.key=key

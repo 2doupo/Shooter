@@ -3,7 +3,7 @@ import pygame
 from entity.Shot import Shot
 from entity.Entity import EntityTag
 class Boss(Enemy):
-    image=pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/SimpleEnemy.png'),(26*5,32*5))
+    image=pygame.transform.scale(pygame.image.load('Image/SimpleEnemy.png'),(26*5,32*5))
     speed=0.25
     shotspeed=0.7
     cooldown=100

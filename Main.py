@@ -30,15 +30,15 @@ in_menu = True
 in_level= False
 level=Level(screen,screenwidth,screenheight,savedata)
 menu=Menu(screen,screenwidth,screenheight)
-water=pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/Watergreen.jpg')
+water=pygame.image.load('Image/Watergreen.jpg')
 w1=water.get_width()
 w2=water.get_height()
 scale=3.5
 water=pygame.transform.scale(water,(w1*scale,w2*scale))
 pygame.display.set_caption("Test")
-pygame.display.set_icon(pygame.transform.scale(pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/malicious.png'),(32,32)))
-arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
-bigarial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',100)
+pygame.display.set_icon(pygame.transform.scale(pygame.image.load('Image/malicious.png'),(32,32)))
+arial=pygame.font.Font('Font/arial.ttf',20)
+bigarial=pygame.font.Font('Font/arial.ttf',100)
 y=0
 backspeed=0.5
 

@@ -1,5 +1,6 @@
 
 from random import randint
+from Savedata import Savedata
 from entity.Entity import EntInt
 from entity.Player import Player
 from entity.Enemy.Boss import Boss
@@ -11,13 +12,16 @@ import pygame
 
 class Level():
     wave=1
-    def __init__(self,screen,screenw,screenh) -> None:
+    def __init__(self,screen,screenw,screenh,savedata) -> None:
         self.bigarial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',100)
         self.arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
         self.entint=EntInt()
         self.screen=screen
         self.screenw=screenw
         self.screenh=screenh
+        self.savedata=savedata
+        self.entint.killcount=savedata.killcount
+
         
         
         
@@ -65,6 +69,16 @@ class Level():
                 self.start()
         fps=self.arial.render("fps :" + str(int(self.clock.get_fps())),False,(0,0,0),(255,255,255))
         self.screen.blit(fps,(self.screenw-70,self.screenh-30))
+
+        kc=self.arial.render("killcount :" + str(self.entint.killcount),False,(0,0,0),(255,255,255))
+        self.screen.blit(kc,(0,self.screenh-30))
+
+        if(pygame.key.get_pressed()[pygame.K_ESCAPE]):
+                print(self.entint.killcount)
+                self.savedata.killcount=self.entint.killcount
+                self.savedata.save()
+                pygame.quit() 
+                quit()
         
 
     

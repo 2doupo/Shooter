@@ -1,10 +1,12 @@
+from os.path import exists
+import pickle
 import pygame
 pygame.init()
 screenwidth=640
 screenheight=800
 screen = pygame.display.set_mode((screenwidth, screenheight),vsync=1)
 
-
+from Savedata import Savedata
 from random import randint
 from entity.item.CadenceUp import CadUp
 from entity.item.DoubleShot import DShot
@@ -16,10 +18,17 @@ from entity.Enemy.Boss import Boss
 from entity.Entity import EntInt,EntityTag
 from Level import Level
 from Menu import Menu
+
+savedata=Savedata()
+
+if(exists('Save/save.douteau')):
+        savedata=pickle.load(open('Save/save.douteau','rb'))
+else:
+        pickle.dump(savedata,open('Save/save.douteau','wb'))
 run = True
 in_menu = True
 in_level= False
-level=Level(screen,screenwidth,screenheight)
+level=Level(screen,screenwidth,screenheight,savedata)
 menu=Menu(screen,screenwidth,screenheight)
 water=pygame.image.load('C:/Users/Arthur/Desktop/game/Test/Image/Watergreen.jpg')
 w1=water.get_width()
@@ -32,6 +41,8 @@ arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
 bigarial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',100)
 y=0
 backspeed=0.5
+
+
 while run:
         
         for event in pygame.event.get():
@@ -53,11 +64,8 @@ while run:
                 level.update()
 
                 
-        
-        
-       
         pygame.display.update()
         
-
+savedata.save()
 pygame.quit() 
 quit()

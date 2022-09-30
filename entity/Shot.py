@@ -19,7 +19,7 @@ class Shot(Entity):
         
         if(self.tag==EntityTag.PLAYERSHOT):
             self.y+=-self.speed*entitys.dt
-            col=(255,255,0)
+            col=(0,0,0)
         elif(self.tag==EntityTag.ENEMYSHOT) :
             self.y+=self.speed*entitys.dt
             col=(255,0,0)

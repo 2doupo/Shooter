@@ -27,6 +27,7 @@ class Enemy(Entity):
       
         
     def kill(self,entitys) -> None:
+        entitys.killcount+=1
         super().kill()
         if(randint(1,100)<=50):
             temp=randint(1,100)

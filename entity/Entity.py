@@ -23,8 +23,9 @@ class EntityTag():
 class EntInt():
   
 
-
+    killcount : int
     def __init__(self) -> None:
+        
         self.entitys =pygame.sprite.Group()
         self.enemys =pygame.sprite.Group()
         self.players =pygame.sprite.Group()
@@ -32,6 +33,7 @@ class EntInt():
         self.shots =pygame.sprite.Group()
         self.player_shots  =pygame.sprite.Group()
         self.enemy_shots  =pygame.sprite.Group()
+        
     def add(self,ent) -> None:
         self.entitys.add(ent)
         if(ent.tag==EntityTag.PLAYER):

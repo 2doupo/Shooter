@@ -10,11 +10,12 @@ class Player(Entity):
     last_shot_time=-100
     totalpv=100
     pv=100
-    buffs : list[Item]=[]
-    bufftags : list[EntityTag]=[]
+    
     image=pygame.transform.scale(pygame.image.load('Image/boat1.png'),(32,60))
     def __init__(self,entitys,pos=(0,0),scr : pygame.surface.Surface=None,key=None):
         super().__init__(entitys,pos,scr,EntityTag.PLAYER)
+        self.buffs : list[Item]=[]
+        self.bufftags : list[EntityTag]=[]
         self.key=key
         self.rect=pygame.Rect(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2,self.image.get_width(),self.image.get_height())
     

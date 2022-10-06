@@ -79,6 +79,9 @@ class Level():
                 self.savedata.save()
                 pygame.quit() 
                 quit()
+        print(self.entint.players.sprites()[0].buffs,self.entint.players.sprites()[1].buffs)
+        #print(len(self.entint.items))
+        
         
 
     

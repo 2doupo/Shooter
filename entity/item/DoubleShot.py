@@ -5,6 +5,7 @@ class DShot(Item):
     size=40
     duration=5000
     start=None
+    pl=None
     def __init__(self, entitys, pos=..., scr: pygame.surface.Surface = None):
         super().__init__(entitys, pos, scr, self.size, EntityTag.DSHOT)
 

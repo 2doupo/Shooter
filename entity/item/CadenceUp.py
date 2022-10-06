@@ -13,14 +13,12 @@ class CadUp(Item):
         return pygame.time.get_ticks()-self.start>self.duration
     def update(self,entitys):
         super().update(entitys)
-        if(self.start!=None):
-            if(self.end()):
-                self.stop()
         pygame.draw.rect(self.scr,(255,255,0),self.rect)
     
     def apply(self,pl):
-        self.pl=pl
         super().apply(pl)
+        self.pl=pl
+        
         pl.buffs.append(self)
         pl.bufftags.append(self.tag)
         pl.cooldown*=1/2

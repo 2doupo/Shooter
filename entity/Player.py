@@ -82,7 +82,7 @@ class Player(Entity):
                         buff.stop()
         if(len(self.buffs)!=0):
             if(EntityTag.SHIELD in self.bufftags):
-                pygame.draw.circle(self.scr,(0,0,255),self.pos,40,5)
+                pygame.draw.circle(self.scr,(0,0,255,100),self.pos,40)
 
         pygame.draw.rect(self.scr,(0,0,0),pygame.Rect(self.x-self.image.get_width()/2,self.y+self.image.get_height(),self.image.get_width(),10))
         pygame.draw.rect(self.scr,(0,255,0),pygame.Rect(self.x-self.image.get_width()/2,self.y+self.image.get_height(),self.image.get_width()*self.pv/self.totalpv,10))

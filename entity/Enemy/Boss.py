@@ -4,16 +4,16 @@ from entity.Shot import Shot
 from entity.Entity import EntityTag
 class Boss(Enemy):
     image=pygame.transform.scale(pygame.image.load('Image/SimpleEnemy.png'),(26*5,32*5))
-    speed=0.25
+    side_speed=0.25
+    down_speed=0
     shotspeed=0.7
     cooldown=100
     last_shot_time=-100
     dir=1
     pv=500
-    color=(0,0,0)
     nb_shot=0
     def __init__(self,entitys,scr,pos=(0,0)):
-        super().__init__(entitys,scr,self.cooldown,pos,self.speed,self.image,self.shotspeed,EntityTag.BOSS)
+        super().__init__(entitys,scr,self.cooldown,pos,self.side_speed,self.down_speed,self.image,self.shotspeed,EntityTag.BOSS)
     
     def endcooldown(self):
         return pygame.time.get_ticks()-self.last_shot_time>self.cooldown
@@ -23,12 +23,12 @@ class Boss(Enemy):
         super().kill(entitys)
     def update(self,entitys):
         
-        if((self.x>pygame.display.get_window_size()[0])|(0>self.x)):
+        if((self.x+self.side_speed*entitys.dt>pygame.display.get_window_size()[0])|(0>self.x-self.side_speed)):
             self.dir*=-1
             #print("change dir")
         
 
-        self.x+=self.dir*self.speed*entitys.dt
+        self.x+=self.dir*self.side_speed*entitys.dt
         self.pos=(self.x,self.y)
 
         if(self.endcooldown()):

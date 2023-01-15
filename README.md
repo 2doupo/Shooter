@@ -15,7 +15,7 @@ shoot=g
 exit=escape
 
 There are 4 different items that spawn when you kill enemy:
-Shield, Heal, CandenceUp and DoubleShot
+Shield, Heal, CadenceUp and DoubleShot
 
 Each last 5 second except Heal.
 

@@ -1,5 +1,8 @@
 # Shooter
 
+You must have the package pygame to run this game.
+Go to this link to install it : https://www.pygame.org/docs/
+
 You can start the game by running Main.
 Then choose Start with the arrows and press enter.
 

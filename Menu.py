@@ -1,4 +1,3 @@
-from cProfile import run
 import pygame
 
 class Button():

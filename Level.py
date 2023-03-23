@@ -20,7 +20,7 @@ class Level():
         self.screenw=screenw
         self.screenh=screenh
         self.savedata=savedata
-        self.entint.killcount=savedata.killcount
+        self.entint.killcount=0
         self.best_wave=savedata.best_Wave
         self.nb_player=1
 
@@ -82,9 +82,12 @@ class Level():
         bw=self.arial.render("bestwave :" + str(self.best_wave),False,(0,0,0),(255,255,255))
         self.screen.blit(bw,(0,self.screenh-60))
 
+        w=self.arial.render("wave :" + str(self.wave),False,(0,0,0),(255,255,255))
+        self.screen.blit(w,(0,self.screenh-90))
+
         if(pygame.key.get_pressed()[pygame.K_ESCAPE]):
                 print(self.entint.killcount)
-                self.savedata.killcount=self.entint.killcount
+                self.savedata.totalkillcount+=self.entint.killcount
                 self.savedata.best_Wave=self.best_wave
                 self.savedata.save()
                 pygame.quit() 

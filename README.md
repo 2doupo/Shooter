@@ -9,7 +9,7 @@ Then choose Start with the arrows and press enter.
 Control :
 
 up=z
-down=q
+down=s
 left=q
 right=d
 
@@ -21,6 +21,10 @@ There are 4 different items that spawn when you kill enemy:
 Shield, Heal, CadenceUp and DoubleShot
 
 Each last 5 second except Heal.
+
+There are 3 types of enemys for now. (red, purple, big red)
+
+
 
 Good Luck ! ;)
 

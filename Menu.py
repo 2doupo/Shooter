@@ -8,11 +8,12 @@ class Button():
 
 class Menu():
 
-    arial=pygame.font.Font('Font/arial.ttf',40)
+    
     last_up_pressed=False
     last_down_pressed=False
     start_level=False
     def __init__(self,screen,screenw,screenh) -> None:
+        self.arial=pygame.font.Font('Font/arial.ttf',40)
         self.clock=pygame.time.Clock()
         self.screen=screen
         self.screenw=screenw

@@ -3,7 +3,7 @@ from entity.item.Item import Item
 from entity.Shot import Shot
 from entity.Entity import Entity,EntityTag
 class Player(Entity):
-    screenw,screenh=pygame.display.get_window_size()
+    
     speed=0.5
     shotspeed=1.3
     cooldown=200
@@ -14,6 +14,7 @@ class Player(Entity):
     image=pygame.transform.scale(pygame.image.load('Image/boat1.png'),(32,60))
     def __init__(self,entitys,pos=(0,0),scr : pygame.surface.Surface=None,key=None):
         super().__init__(entitys,pos,scr,EntityTag.PLAYER)
+        self.screenw,self.screenh=pygame.display.get_window_size()
         self.buffs : list[Item]=[]
         self.bufftags : list[EntityTag]=[]
         self.key=key

@@ -5,7 +5,7 @@ import pygame
 from Savedata import Savedata
 from random import randint
 from entity.item.CadenceUp import CadUp
-from entity.item.DoubleShot import DShot # Importation de ce que j'ai besoin dans le Main que j'ai codé. 
+from entity.item.DoubleShot import DShot # Importation de ce que j'ai besoin dans Game que j'ai codé. 
 from entity.item.Shield import Shield    # Attention à l'importation circulaire.(Si A importe B et B importe A python n'est pas content mais sur d'autre langage comme Java ça ne pose pas problème.)
 from entity.Player import Player
 from entity.Enemy.SimpleEnemy import SimpleEnemy
@@ -25,22 +25,24 @@ class Game:
             self.savedata=pickle.load(open('Save/save.douteau','rb'))
         else:
             pickle.dump(self.savedata,open('Save/save.douteau','wb'))
-        self.run = True
-        self.in_menu = True
-        self.in_level= False
-        self.level=Level(self.screen,self.screenwidth,self.screenheight,self.savedata)
-        self.menu=Menu(self.screen,self.screenwidth,self.screenheight)
-        water=pygame.image.load('Image/Watergreen.jpg')
+        self.run = True #Variable qui dit quand le jeu est en cours
+        self.in_menu = True #Variable qui dit quand on est dans le menu
+        self.in_level= False #Variable qui dit quand on est dans un niveau
+        self.level=Level(self.screen,self.screenwidth,self.screenheight,self.savedata) #Création du niveau
+        self.menu=Menu(self.screen,self.screenwidth,self.screenheight) #Création du Menu
+        water=pygame.image.load('Image/Watergreen.jpg')#Image du fond de l'écran
         w1=water.get_width()
         w2=water.get_height()
         scale=3.5
-        self.water=pygame.transform.scale(water,(w1*scale,w2*scale))
+        self.water=pygame.transform.scale(water,(w1*scale,w2*scale))#Je calibre la taille de cette image
         pygame.display.set_caption("Test")
-        pygame.display.set_icon(pygame.transform.scale(pygame.image.load('Image/malicious.png'),(32,32)))
-        arial=pygame.font.Font('Font/arial.ttf',20)
+        pygame.display.set_icon(pygame.transform.scale(pygame.image.load('Image/malicious.png'),(32,32)))#Petite icône de la fenêtre
+        arial=pygame.font.Font('Font/arial.ttf',20) # Chargement des polices
         bigarial=pygame.font.Font('Font/arial.ttf',100)
-        self.y=0
-        self.backspeed=0.5
+        self.y=0 #position du fond d'écran
+        self.backspeed=0.5 #vitesse de défilement du fond d'écran
+    
+    #Fonction de mise à jour du jeu
     def updtate(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

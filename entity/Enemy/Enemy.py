@@ -13,6 +13,7 @@ class Enemy(Entity):
     last_shot_time=-100
     pv=100
     cd_move=50
+    touch=False
     
     
     
@@ -56,11 +57,18 @@ class Enemy(Entity):
             self.y+=self.down_speed*entitys.dt
         self.rect=pygame.Rect(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2,self.image.get_width(),self.image.get_height())
         shot=pygame.sprite.spritecollide(self,entitys.player_shots,True)
+        if(shot.__len__()!=0):
+            self.touch=True
+        else:
+            self.touch=False
         if(len(shot)!=0):
             self.pv+=-10
         if(self.pv<=0):
             self.kill(entitys)
-        self.scr.blit(self.image,self.rect)
+        if(self.touch):
+            self.scr.blit(self.image,self.rect,special_flags=pygame.BLEND_ADD)
+        else:
+            self.scr.blit(self.image,self.rect)
 
         
         

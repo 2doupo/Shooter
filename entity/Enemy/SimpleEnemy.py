@@ -6,7 +6,7 @@ from entity.Shot import Shot
 class SimpleEnemy(Enemy):
     size=30
     side_speed=0.25
-    down_speed=0.25
+    down_speed=0.02
     shotspeed=0.7
     image=pygame.transform.scale(pygame.image.load('Image/SimpleEnemy.png'),(52,64))
     cooldown=400

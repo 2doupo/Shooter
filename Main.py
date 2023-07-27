@@ -3,5 +3,5 @@ from Game import Game
 game=Game()
 
 while game.run:
-    game.updtate()
+    game.update()
 game.quit()

@@ -12,9 +12,11 @@ from entity.Enemy.SimpleEnemy import SimpleEnemy
 from entity.Enemy.Malicious import Malicious
 from entity.Enemy.Boss import Boss
 from entity.Entity import EntInt,EntityTag
-from Level import Level
+from Endless import Endless
 from Menu import Menu
+from Levels.Level import Level
 class Game:
+    level=None
     def __init__(self) -> None:
         pygame.init() # Initilisation de pygame
         self.screenwidth=640 # Taille de l'écran en pixel
@@ -28,7 +30,10 @@ class Game:
         self.run = True #Variable qui dit quand le jeu est en cours
         self.in_menu = True #Variable qui dit quand on est dans le menu
         self.in_level= False #Variable qui dit quand on est dans un niveau
-        self.level=Level(self.screen,self.screenwidth,self.screenheight,self.savedata) #Création du niveau
+        self.in_endless=False
+        self.endless=Endless(self.screen,self.screenwidth,self.screenheight,self.savedata) #Création du niveau
+      
+        
         self.menu=Menu(self.screen,self.screenwidth,self.screenheight) #Création du Menu
         water=pygame.image.load('Image/Watergreen.jpg')#Image du fond de l'écran
         w1=water.get_width()
@@ -41,9 +46,10 @@ class Game:
         bigarial=pygame.font.Font('Font/arial.ttf',100)
         self.y=0 #position du fond d'écran
         self.backspeed=0.5 #vitesse de défilement du fond d'écran
+        self.selected_level=1
     
     #Fonction de mise à jour du jeu
-    def updtate(self):
+    def update(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                     self.run = False
@@ -59,9 +65,22 @@ class Game:
                 if(self.menu.start_level):
                         self.in_level=True
                         self.in_menu=False
+                        self.level=Level(self.screen,self.screenwidth,self.screenheight,self.savedata,self.selected_level) #start selected level
                         self.level.start()
+                if(self.menu.start_endless):
+                    self.in_endless=True
+                    self.in_menu=False
+                    self.endless.start()
+                      
+                
+
+                      
+                    
+
+        elif(self.in_endless):
+            self.endless.update()# mise à jour du niveau
         elif(self.in_level):
-                self.level.update()# mise à jour du niveau
+             self.level.update()
 
                 
         pygame.display.update()# mise à jour de l'affichage de l'image     

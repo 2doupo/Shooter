@@ -34,10 +34,7 @@ class Enemy(Entity):
     def endmove_cd(self):
         return pygame.time.get_ticks()-self.last_move_time>self.cd_move
       
-        
-    def kill(self,entitys) -> None:
-        entitys.killcount+=1
-        super().kill()
+    def loot(self,entitys):
         if(randint(1,100)<=50):
             temp=randint(1,100)
             if(temp<=25):
@@ -48,6 +45,14 @@ class Enemy(Entity):
                 DShot(entitys,self.pos,self.scr)
             else: 
                 Shield(entitys,self.pos,self.scr)
+
+        
+    def kill(self,entitys) -> None:
+        
+        super().kill()
+        entitys.killcount+=1
+        self.loot(entitys)
+        
 
     def update(self,entitys):
         

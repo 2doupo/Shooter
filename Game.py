@@ -47,20 +47,24 @@ class Game:
         self.y=0 #position du fond d'écran
         self.backspeed=0.5 #vitesse de défilement du fond d'écran
         self.selected_level=1
+        self.total_level=3
     
+    def draw_backgroung(self):
+        self.y+=self.backspeed
+        for i in range(int(self.screenwidth/self.water.get_width())+1):
+                for j in range(-1,int(self.screenheight/self.water.get_height())+1):
+                        self.screen.blit(self.water,(i*self.water.get_width(),(j*self.water.get_height()+self.y)%(self.screenheight+self.water.get_height())-self.water.get_height()))
     #Fonction de mise à jour du jeu
     def update(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                     self.run = False
         
-        #Dessin de l'arrière plan
-        self.y+=self.backspeed
-        for i in range(int(self.screenwidth/self.water.get_width())+1):
-                for j in range(-1,int(self.screenheight/self.water.get_height())+1):
-                        self.screen.blit(self.water,(i*self.water.get_width(),(j*self.water.get_height()+self.y)%(self.screenheight+self.water.get_height())-self.water.get_height()))
+        
+        self.draw_backgroung() #Dessin de l'arrière plan
+        
         if(self.in_menu):
-                self.menu.update()# mise à jour du menu
+                self.menu.update() # mise à jour du menu
                 
                 if(self.menu.start_level):
                         self.in_level=True
@@ -80,7 +84,12 @@ class Game:
         elif(self.in_endless):
             self.endless.update()# mise à jour du niveau
         elif(self.in_level):
-             self.level.update()
+            self.level.update()
+            if(self.level.next):
+                self.selected_level=min(self.selected_level+1,self.total_level)
+                self.level=Level(self.screen,self.screenwidth,self.screenheight,self.savedata,self.selected_level) #start selected level
+                self.level.start()
+
 
                 
         pygame.display.update()# mise à jour de l'affichage de l'image     

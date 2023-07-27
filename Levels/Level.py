@@ -25,6 +25,10 @@ class Level():
                 self.waves=self.get_waves()
                 self.current_wave=-1
                 self.win=False
+                self.pre_next=False
+                self.next=False
+                self.cooldown_until_next=1000
+                self.start_cooldown=0
                 
         def spawn_enemys_in_wave(self,wave : str):
                 for i in range(len(wave)//2):
@@ -96,6 +100,18 @@ class Level():
                 if(self.win):
                         level_cleared=self.bigarial.render("Level Cleared",False,(0,0,0))
                         self.screen.blit(level_cleared,((self.screenw-level_cleared.get_width())/2,self.screenh/2))
+                        if(not self.pre_next):
+                                
+                                
+                                self.start_cooldown=pygame.time.get_ticks()
+                                self.pre_next=True
+                        else:
+
+                                if(pygame.time.get_ticks()-self.start_cooldown>self.cooldown_until_next):
+                                        self.next=True
+                                        
+ 
+
 
                 self.info_print()
 
@@ -114,6 +130,10 @@ class Level():
 
                 kc=self.arial.render("killcount :" + str(self.entint.killcount),False,(0,0,0),(255,255,255))
                 self.screen.blit(kc,(0,self.screenh-30))
+
+        
+                
+
 
         
         

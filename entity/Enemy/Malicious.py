@@ -8,7 +8,7 @@ class Malicious(Enemy):
     image=pygame.transform.scale(pygame.image.load('Image/malicious.png'),(size,size))
     side_speed=0.25
     down_speed=0.10
-    shot_speed=0.7
+    shot_speed=0.4
     cooldown=1000
     last_shot_time=-100
     cooldown_dir_change=300
@@ -42,7 +42,7 @@ class Malicious(Enemy):
         self.y+=self.down_dir*self.down_speed*entitys.dt
         self.pos=(self.x,self.y)
         if(self.endcooldown()):
-            Shot(entitys,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shot_speed,EntityTag.ENEMYSHOT)
+            Shot(entitys,self,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shot_speed,EntityTag.ENEMYSHOT)
             self.last_shot_time=pygame.time.get_ticks()
         super().update(entitys)
         

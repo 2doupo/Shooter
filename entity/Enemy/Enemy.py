@@ -57,7 +57,7 @@ class Enemy(Entity):
     def update(self,entitys):
         
         super().update(entitys)
-        if(self.tag not in [EntityTag.BOSS,EntityTag.MALICIOUS]):
+        if(self.tag == EntityTag.SIMPLE_ENEMY):
 
             self.y+=self.down_speed*entitys.dt
         self.rect=pygame.Rect(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2,self.image.get_width(),self.image.get_height())

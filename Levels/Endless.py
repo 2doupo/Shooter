@@ -12,6 +12,7 @@ import pygame
 
 class Endless():
         wave=1
+        end=False
         def __init__(self,screen,screenw,screenh,savedata : Savedata) -> None:
                 self.bigarial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',100)
                 self.arial=pygame.font.Font('C:/Windows/Fonts/arial.ttf',20)
@@ -77,12 +78,12 @@ class Endless():
 
 
                 if(pygame.key.get_pressed()[pygame.K_ESCAPE]):
-                        print(self.entint.killcount)
+                        #print(self.entint.killcount)
                         self.savedata.totalkillcount+=self.entint.killcount
                         self.savedata.best_Wave=self.best_wave
                         self.savedata.save()
-                        pygame.quit() 
-                        quit()
+                        self.end=True
+                        
                 #print(self.entint.players.sprites()[0].buffs,self.entint.players.sprites()[1].buffs)
                 #print(len(self.entint.items))
         def info_print(self):

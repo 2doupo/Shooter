@@ -4,4 +4,3 @@ game=Game()
 
 while game.run:
     game.update()
-game.quit()

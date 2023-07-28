@@ -33,7 +33,7 @@ class SimpleEnemy(Enemy):
         self.pos=(self.x,self.y)
         
         if(self.endcooldown()):
-            Shot(entitys,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.ENEMYSHOT)
+            Shot(entitys,self,(self.x,self.y+self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.ENEMYSHOT)
             self.last_shot_time=pygame.time.get_ticks()
         super().update(entitys)
         

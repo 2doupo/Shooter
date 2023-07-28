@@ -12,7 +12,7 @@ from entity.Enemy.SimpleEnemy import SimpleEnemy
 from entity.Enemy.Malicious import Malicious
 from entity.Enemy.Boss import Boss
 from entity.Entity import EntInt,EntityTag
-from Endless import Endless
+from Levels.Endless import Endless
 from Menu import Menu
 from Levels.Level import Level
 class Game:
@@ -75,6 +75,10 @@ class Game:
                     self.in_endless=True
                     self.in_menu=False
                     self.endless.start()
+                if(self.menu.end):
+                     self.quit()
+                     
+
                       
                 
 
@@ -83,12 +87,16 @@ class Game:
 
         elif(self.in_endless):
             self.endless.update()# mise à jour du niveau
+            if(self.endless.end):
+                 self.quit()
         elif(self.in_level):
             self.level.update()
             if(self.level.next):
                 self.selected_level=min(self.selected_level+1,self.total_level)
                 self.level=Level(self.screen,self.screenwidth,self.screenheight,self.savedata,self.selected_level) #start selected level
                 self.level.start()
+            if(self.level.end):
+                 self.quit()
 
 
                 
@@ -96,6 +104,7 @@ class Game:
         
     def quit(self):
         self.savedata.save() #Sauvegarde des données
-        pygame.quit() 
-        quit()
+        self.run=False
+        
+        
 

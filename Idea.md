@@ -1,8 +1,10 @@
-Des niveaux différents
+Des niveaux différents  CHECK
+plus d'ennemis
+des tirs différents (sin x, sacade, tir à vitesse non constante, laser)
+manières simples de faire jouer des gens
 des améliorations du vaisseau entre chaque niveau
 liste d'améliorations possibles : cadence de tir, dégats, vie, régen de vie, tir différents, vitesse de déplacement, allié
-plus d'ennemis
-des tirs différents
+
 des sons et de la musique
 multijoueur
 pause

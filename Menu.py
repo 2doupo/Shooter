@@ -15,6 +15,7 @@ class Menu():
     start_level=False
     start_endless=False
     in_options=False
+    end=False
     def __init__(self,screen,screenw,screenh) -> None:
         self.arial=pygame.font.Font('Font/arial.ttf',40)
         self.clock=pygame.time.Clock()
@@ -59,8 +60,8 @@ class Menu():
             case Button.OPTIONS: 
                 self.in_options=True
             case Button.QUIT : 
-                pygame.quit()
-                quit()
+                self.end=True
+                
 
 
                 

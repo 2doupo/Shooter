@@ -2,6 +2,16 @@ import pygame
 from entity.item.Item import Item
 from entity.Shot import Shot
 from entity.Entity import Entity,EntityTag
+import sys, os
+def resource_path(relative_path):
+    """ Get the absolute path to the resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 class Player(Entity):
     
     speed=0.5
@@ -11,7 +21,7 @@ class Player(Entity):
     totalpv=100
     pv=100
     
-    image=pygame.transform.scale(pygame.image.load('Image/boat1.png'),(32,60))
+    image=pygame.transform.scale(pygame.image.load(os.path.join('Image','boat1.png')),(32,60))
     def __init__(self,entitys,pos=(0,0),scr : pygame.surface.Surface=None,key=None):
         super().__init__(entitys,pos,scr,EntityTag.PLAYER)
         self.screenw,self.screenh=pygame.display.get_window_size()
@@ -49,13 +59,13 @@ class Player(Entity):
             if(len(self.buffs)!=0):
                 
                 if(EntityTag.DSHOT in self.bufftags):
-                    Shot(entity,(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)   
-                    Shot(entity,(self.x+self.image.get_width()/2,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)
+                    Shot(entity,self,(self.x-self.image.get_width()/2,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)   
+                    Shot(entity,self,(self.x+self.image.get_width()/2,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)
                 else:
-                    Shot(entity,(self.x,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)
+                    Shot(entity,self,(self.x,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)
 
             else: 
-                Shot(entity,(self.x,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)
+                Shot(entity,self,(self.x,self.y-self.image.get_height()/2),self.scr,5,self.shotspeed,EntityTag.PLAYERSHOT)
             self.last_shot_time=pygame.time.get_ticks()
         self.pos=(self.x, self.y)
         shot=pygame.sprite.spritecollide(self,entity.enemy_shots,True)
